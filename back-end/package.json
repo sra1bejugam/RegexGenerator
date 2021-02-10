@@ -1,0 +1,16 @@
+{
+  "name": "regexgenerator",
+  "version": "1.0.0",
+  "description": "This app will form regex patterns by giving strings or array of strings",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src/js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shravan Bejugam",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.6.0"
+  }
+}
