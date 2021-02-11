@@ -1,7 +1,7 @@
 {
   "name": "@sra1bejugam/regex-nlp",
-  "version": "1.0.7",
-  "description": "This app will form regex patterns by giving strings or array of strings",
+  "version": "1.0.11",
+  "description": "This app will form regex patterns by giving strings or array of strings and also we can test the regex patterns using different methods.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/js",

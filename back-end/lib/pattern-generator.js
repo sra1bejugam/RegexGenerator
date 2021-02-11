@@ -101,10 +101,10 @@ class PatternGenerator {
                 eq = equation.test(keyword);
                 break;
             case 'exec':
-                eq = equation.exec(keyword)[0]; // change this eq to identify index for exec and for null also handle
+                eq = equation.exec(keyword) === null? 'null':equation.exec(keyword)[0]; // change this eq to identify index for exec
                 break;
             case 'match':
-                eq = keyword.match(equation)[0]; // change this eq to identify index for exec and for null also handle
+                eq = keyword.match(equation)=== null ? 'null' : keyword.match(equation)[0]; // change this eq to identify index for match
                 break;
             case 'replace':
                 eq = keyword.replace(equation, `${isReplace}`);
@@ -127,7 +127,7 @@ class PatternGenerator {
         let isGlobal = isGlobaly ? 'g' : '';
         let inputkeys = '';
         let finalRes = [];
-        if (keywords.isArray.test(keywords)) {
+        if (regexExp.isArray.test(keywords)) {
             inputkeys = keywords.replace(/^./, '').replace(/.$/, '').split(',');
         } else {
             inputkeys = keywords;

@@ -3,7 +3,6 @@ import React, {
   Component
 } from 'react';
 import Switch from "react-bootstrap-switch";
-// reactstrap components
 import {
   Button,
   FormGroup,
@@ -16,10 +15,6 @@ import {
   InputGroup,
   Label
 } from "reactstrap";
-// import {
-//   withStyles
-// } from '@material-ui/core';
-
 export class GetStarted extends Component {
 
   constructor(props) {
@@ -45,13 +40,12 @@ export class GetStarted extends Component {
       isReplaceChecked: null,
       isSearchChecked: null,
       regexPattern: null,
-      replaceWithThisKeyword:null,
+      replaceWithThisKeyword: null,
+      methodDisplay: null,
       testResult: [{ keyword: null, eq: 'false' }]
     };
     this.handleTextInput = this.handleTextInput.bind(this);
-    this.handleTestingKeywords=this.handleTestingKeywords.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
-    // this.getRegexPatern = this.getRegexPatern.bind(this);
+    this.handleTestingKeywords = this.handleTestingKeywords.bind(this);
   }
 
   handleTextInput = (event) => {
@@ -61,7 +55,6 @@ export class GetStarted extends Component {
   };
 
   handleTestingKeywords = (event) => {
-    console.log("🚀 ~ file: GetStarted.js ~ line 66 ~ GetStarted ~ event.target.value", event.target.value)
     this.setState({
       testingKeywords: event.target.value
     });
@@ -76,15 +69,20 @@ export class GetStarted extends Component {
   handleCaseChange = (event) => {
     this.setState({
       selectedOptionCase: event.state.value
-    })
-  }
+    });
+  };
+
+  getRegexMethod = (event) => {
+    this.setState({
+      methodDisplay: event.state.value
+    });
+  };
 
   handleGlobalChange = (event) => {
     this.setState({
       selectedOptionGlobal: event.state.value
-    })
-    console.log("🚀 ~ file: GetStarted.js ~ line 77 ~ GetStarted ~ selectedOptionGlobal", this.state.selectedOptionGlobal)
-  }
+    });
+  };
 
   handleChoosenNormal = (event) => {
     this.setState({ isWordsForm: false });
@@ -111,7 +109,6 @@ export class GetStarted extends Component {
   };
 
   testChecked = (event) => {
-    console.log("🚀 ~ file: GetStarted.js ~ line 86 ~ GetStarted ~ event", event, '--', event.target.name);
     this.setState({ isTestChecked: event.target.checked });
     this.setState({ isExecChecked: false });
     this.setState({ isMatchChecked: false });
@@ -136,6 +133,7 @@ export class GetStarted extends Component {
     this.setState({ selectedOptionIsReplace: false });
     this.setState({ selectedOptionIsSearch: false });
   };
+
   matchChecked = (event) => {
     this.setState({ isMatchChecked: event.target.checked });
     this.setState({ isTestChecked: false });
@@ -148,6 +146,7 @@ export class GetStarted extends Component {
     this.setState({ selectedOptionIsReplace: false });
     this.setState({ selectedOptionIsSearch: false });
   };
+
   replaceChecked = (event) => {
     this.setState({ isReplaceChecked: event.target.checked });
     this.setState({ isTestChecked: false });
@@ -160,6 +159,7 @@ export class GetStarted extends Component {
     this.setState({ selectedOptionIsMatch: false });
     this.setState({ selectedOptionIsSearch: false });
   };
+
   searchChecked = (event) => {
     this.setState({ isSearchChecked: event.target.checked });
     this.setState({ isTestChecked: false });
@@ -176,7 +176,6 @@ export class GetStarted extends Component {
   handleGetRegex = async () => {
     let caseSense = this.state.selectedOptionCase;
     let isGlobal = this.state.selectedOptionGlobal;
-    console.log("🚀 ~ file: GetStarted.js ~ line 150 ~ GetStarted ~ handleGetRegex= ~ isGlobal", isGlobal)
     let areWords = this.state.isNormalForm ? this.state.isNormalForm : this.state.selectedOptionIsWords ? this.state.selectedOptionIsWords : this.state.selectedOptionIsDates;
     let pattern = await regexGenerator.regexEquation(this.state.inputText, caseSense, isGlobal, areWords);
     this.setState({
@@ -188,32 +187,26 @@ export class GetStarted extends Component {
     let caseSense = this.state.selectedOptionCase;
     let isGlobal = this.state.selectedOptionGlobal;
     let method = null;
-    let replaceString='';
-    console.log("🚀 ~ file: GetStarted.js ~ line 216 ~ GetStarted ~ testKeywords= ~ this.state.testingKeywords", this.state.testingKeywords)
-    console.log("🚀 ~ file: GetStarted.js ~ line 192 ~ GetStarted ~ testKeywords= ~ this.state.selectedOptionIsTest",
-     this.state.selectedOptionIsTest,this.state.selectedOptionIsExec,this.state.selectedOptionIsMatch,
-     this.state.selectedOptionIsReplace,this.state.selectedOptionIsSearch
-    )
+    let replaceString = '';
 
     if (this.state.selectedOptionIsTest) {
       method = this.state.selectedOptionIsTest;
     }
-     if (this.state.selectedOptionIsExec) {
+    if (this.state.selectedOptionIsExec) {
       method = this.state.selectedOptionIsExec;
-    } 
-     if (this.state.selectedOptionIsMatch) {
+    }
+    if (this.state.selectedOptionIsMatch) {
       method = this.state.selectedOptionIsMatch;
     }
-     if (this.state.selectedOptionIsReplace) {
+    if (this.state.selectedOptionIsReplace) {
       method = this.state.selectedOptionIsReplace;
     }
-     if (this.state.selectedOptionIsSearch) {
+    if (this.state.selectedOptionIsSearch) {
       method = this.state.selectedOptionIsSearch;
     }
-    if(this.state.replaceWithThisKeyword){
+    if (this.state.replaceWithThisKeyword) {
       replaceString = this.state.replaceWithThisKeyword;
     }
-    console.log("🚀 ~ file: GetStarted.js ~ line 170 ~ GetStarted ~ testKeywords= ~ method",this.state.regexPattern, method,this.state.replaceWithThisKeyword,replaceString)
     let testResult = await regexGenerator.validateRegexEquation(this.state.testingKeywords, caseSense, isGlobal, this.state.regexPattern, method, replaceString);
     await this.setState({
       testResult
@@ -222,8 +215,7 @@ export class GetStarted extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { selectedOptionCase, displayEquation, testResult, isTestChecked, isMatchChecked, isExecChecked, isReplaceChecked, isSearchChecked, selectedOptionIsTest, selectedOptionIsSearch, selectedOptionIsExec, selectedOptionIsMatch, selectedOptionIsReplace, isWordsForm, isDatesForm, selectedOptionGlobal, inputText, selectedStringToReplaceWith, isNormalForm, testResults, selectedOptionIsWords, isWordsInCheck, isDates, selectedOptionIsDates, selectedOptionInMethod } = this.state;
+    const { methodDisplay, testResult, isTestChecked, isMatchChecked, isExecChecked, isReplaceChecked, isSearchChecked, isWordsForm, isDatesForm, isNormalForm } = this.state;
     // const [leftFocus, setLeftFocus] = React.useState(false);
 
     return (
@@ -270,11 +262,11 @@ export class GetStarted extends Component {
             <Row id="checkRadios">
               <Col lg="2" sm="6">
                 <p className="category">Case Sensitive </p>
-                <Switch defaultValue={false} onChange={this.handleCaseChange} offColor="" onColor=""></Switch>
+                <Switch defaultValue={false} onChange={this.handleCaseChange} offColor="" onColor="blue"></Switch>
               </Col>
               <Col lg="3" sm="6">
                 <p className="category">Global</p>
-                <Switch defaultValue={false} onChange={this.handleGlobalChange} offColor="" onColor=""></Switch>
+                <Switch defaultValue={false} onChange={this.handleGlobalChange} offColor="" onColor="blue"></Switch>
               </Col>
               <Col className="mb-4" lg="3" sm="6">
                 <p className="category">Pattern Type</p>
@@ -389,7 +381,7 @@ export class GetStarted extends Component {
               </Col>
             </Row>
             <Row>
-            <Col lg="11" sm="6">
+              {isReplaceChecked ? <Col lg="11" sm="6">
                 <InputGroup >
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
@@ -402,7 +394,23 @@ export class GetStarted extends Component {
                     onChange={this.handleReplaceKeyword}
                   ></Input>
                 </InputGroup>
+              </Col> : ''}
+              <Col lg="2" sm="6">
+                <p className="category">Need Equation</p>
+                <Switch defaultValue={false} onChange={this.getRegexMethod} offColor="" onColor="red"></Switch>
               </Col>
+              {methodDisplay ?
+                <div>
+                  {this.state.isTestChecked ? <div><h3 style={{ color: 'grey' }}>This is Test Equation: {this.state.regexPattern}.test('Input String')</h3></div> : ''}
+                  {this.state.isExecChecked ? <div><h3 style={{ color: 'grey' }}>This is Exec Equation: {this.state.regexPattern}.exec('Input String')</h3></div> : ''}
+                  {this.state.isMatchChecked ? <div><h3 style={{ color: 'grey' }}>This is Match Equation: 'Input String'.match({this.state.regexPattern})</h3></div> : ''}
+                  {this.state.isReplaceChecked ? <div><h3 style={{ color: 'grey' }}>This is Replace Equation:'Input String'.replace({this.state.regexPattern})</h3></div> : ''}
+                  {this.state.isSearchChecked ? <div><h3 style={{ color: 'grey' }}>This is Search Equation:'Input String'.search({this.state.regexPattern})</h3></div> : ''}
+                </div>
+                : ''
+              }
+              <br></br>
+              <br></br>
               <Col lg="11" sm="6">
                 <InputGroup >
                   <InputGroupAddon addonType="prepend">
@@ -426,11 +434,13 @@ export class GetStarted extends Component {
             <br></br>
             <Row className="text-center mt-5">
               <Col className="ml-auto mr-auto" md="12">
-                {testResult[0].keyword && testResult.map((row) => (
-                  <div style={{ paddingLeft: '10px' }}>
-                    <h3 style={{color:'grey'}}>KeyWord: {row.keyword}</h3>
-                    <h3 style={{color:'grey'}}>Test Value: {row.eq === true ? 'true' : row.eq}</h3>
+                {testResult[0].keyword && testResult.map((row, index) => (
+                  // <li key ={index}>
+                  <div key={index} style={{ paddingLeft: '10px' }}>
+                    <h3 style={{ color: 'grey' }}>KeyWord: {row.keyword}</h3>
+                    <h3 style={{ color: 'grey' }}>Test Value: {row.eq === false ? 'false' : (row.eq === true ? 'true' : row.eq)}</h3>
                   </div>
+                  // </li>
                 ))}
               </Col>
             </Row>

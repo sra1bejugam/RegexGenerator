@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// reactstrap components
+// import { Link } from "react-router-dom";
 import {
-  Button,
+  // Button,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+  // UncontrolledDropdown,
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -53,19 +52,19 @@ function IndexNavbar() {
       <Navbar className={"fixed-top " + navbarColor} expand="lg" color="info">
         <Container>
           <div className="navbar-translate">
-            <NavbarBrand
-              href="/home"
+            {/*<NavbarBrand
+              href="/index"
               id="navbar-brand"
             >
             <i className="now-ui-icons business_bulb-63"></i>&nbsp;
             <p>Regex Generator</p>
-            </NavbarBrand>
-            {/* <NavbarBrand
-              href="/home"
+            </NavbarBrand> */}
+            <NavbarBrand
+              href="/index"
               id="navbar-brand"
             >
               HOME
-        </NavbarBrand> */}
+        </NavbarBrand>
             {/* <UncontrolledTooltip target="#navbar-brand">
               Designed by Invision. Coded by Creative Tim
             </UncontrolledTooltip> */}
@@ -102,7 +101,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
+                  href="https://www.facebook.com/"
                   target="_blank"
                   id="facebook-tooltip"
                 >
@@ -115,7 +114,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+                  href="https://www.instagram.com/"
                   target="_blank"
                   id="instagram-tooltip"
                 >

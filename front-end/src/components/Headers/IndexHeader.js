@@ -34,11 +34,11 @@ function IndexHeader() {
         ></div>
         <Container>
           <div className="content-center brand">
-            <img
+            {/*<img
               alt="..."
               className="n-logo"
-              src={require("assets/img/now-logo.png")}
-            ></img>
+              // src={require("assets/img/now-logo.png")}
+        ></img> */}
             <h1 className="h1-seo">A Regex Generator.</h1>
             {/*<h3>By Shravan</h3>*/}
             <h5> Description comes here</h5>

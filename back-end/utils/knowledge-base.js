@@ -19,4 +19,4 @@ module.exports = {
     amounts: /^[0-9.,\-\+]+$/g,
     alphaSpecialChars: /^[a-z-.\/!@#$%^&*\(\)\s.~`]+$/ig,
     digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~`\s]+$/g
-}
+};
