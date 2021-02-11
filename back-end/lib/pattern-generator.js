@@ -7,9 +7,9 @@ class PatternGenerator {
             pattern = keyword.replace(regexExp.specialChars, '[^a-z0-9]+'); //special chars check for single or not
         } else if (isDateFormats) {
             if (regexExp.digits.test(keyword)) { // all number dates
-                pattern = datesEquation(keyword);
+                pattern = this.datesEquation(keyword);
             } else if (regexExp.months.test(keyword)) { // all alpha numeric dates
-                pattern = monthsEquation(keyword);
+                pattern = this.monthsEquation(keyword);
             }
         } else {
             if (regexExp.onlyDigits.test(keyword)) { // Digit cases
@@ -73,6 +73,7 @@ class PatternGenerator {
     }
 
     regexFormater(data, isCaseSenitive, isGlobal) {
+        console.log("🚀 ~ file: pattern-generator.js ~ line 76 ~ PatternGenerator ~ regexFormater ~ isGlobal", isGlobal)
         let finalEq = 'Choose valid options and input';
         if (data && data.length) {
             let equation = '';
@@ -85,99 +86,89 @@ class PatternGenerator {
         return finalEq;
     }
 
-    getRegexMethodEq(regexEq, value, keyword, isCase, isGlobal, isReplace) {
+    //    let execRes= [ 'abcd res',
+    //   'abcd res',
+    //   index: 0,
+    //   input: 'abcd res',
+    //   groups: undefined ]
+    getRegexMethodEq(regexEq, method, keyword, isCase, isGlobal, isReplace) {
         let eq = '';
-        let filteredRegex = regexEq.replace(regexEq.startValue, '').replace(regexEq.flagsAtEnd, '');
-        let patternValue = value.value;
+        let stringRegex = regexEq.toString();
+        let filteredRegex = stringRegex.replace(regexExp.startValue, '').replace(regexExp.flagsAtEnd, '');
         let equation = new RegExp(filteredRegex, `${isCase+isGlobal}`);
-        //    let execRes= [ 'abcd res',
-        //   'abcd res',
-        //   index: 0,
-        //   input: 'abcd res',
-        //   groups: undefined ]
-        switch (patternValue) { // handle cases for match
-            case 'exec': {
-                eq = equation.exec(keyword);
-                console.log("🚀 ~ file: index.js ~ line 176 ~ getRegexMethodEq ~ exec", eq);
-                break;
-            }
-            case 'test': { // perfect
+        switch (method) {
+            case 'test':
                 eq = equation.test(keyword);
                 break;
-            }
-            case 'match': {
-                let matchedRes = keyword.match(equation);
-                eq = keyword.match(equation);
+            case 'exec':
+                eq = equation.exec(keyword)[0]; // change this eq to identify index for exec and for null also handle
                 break;
-            }
-            case 'replace': { //perfect
+            case 'match':
+                eq = keyword.match(equation)[0]; // change this eq to identify index for exec and for null also handle
+                break;
+            case 'replace':
                 eq = keyword.replace(equation, `${isReplace}`);
                 break;
-            }
-            case 'search': { //perfect
+            case 'search':
                 eq = keyword.search(equation);
                 break;
-            }
             default:
                 break;
         }
+        console.log("🚀 ~ file: pattern-generator.js ~ line 131 ~ PatternGenerator ~ getRegexMethodEq ~ eq", eq);
         return {
             keyword,
             eq
         };
     }
 
-    //?! Ask and remove the redundent code
+    validateRegexEquation(keywords, isCase, isGlobaly, regex, method, isReplaceString) {
+        let isCaseSenitive = isCase ? 'i' : '';
+        let isGlobal = isGlobaly ? 'g' : '';
+        let inputkeys = '';
+        let finalRes = [];
+        if (keywords.isArray.test(keywords)) {
+            inputkeys = keywords.replace(/^./, '').replace(/.$/, '').split(',');
+        } else {
+            inputkeys = keywords;
+        }
 
-    // testRegexEquation(data) {
-    //     let isCaseSenitive = data.isCase ? 'i' : ''; //change
-    //     let isGlobal = data.isGlobal ? 'g' : '';
-    //     let keywords = data.inputData;
-    //     // console.log("🚀 ~ file: index.js ~ line 191 ~ testRegexEquation ~ testEquation", testEquation);
-    //     let inputkeys = '';
-    //     let finalRes = [];
-    //     if (regexExp.isArray.test(keywords)) {
-    //         inputkeys = keywords.replace(/^./, '').replace(/.$/, '').split(',');
-    //     } else {
-    //         inputkeys = keywords;
-    //     }
-
-    //     if (typeof (inputkeys) != 'string') {
-    //         inputkeys.forEach((text) => {
-    //             let finalEq = getRegexMethodEq(data.regexEq, data.method, text, isCaseSenitive, isGlobal, data.isReplace);
-    //             finalRes.push(finalEq);
-    //         })
-    //     } else {
-    //         let finalEq = getRegexMethodEq(data.regexEq, data.method, inputkeys, isCaseSenitive, isGlobal, data.isReplace);
-    //         console.log("🚀 ~ file: index.js ~ line 215 ~ testRegexEquation ~ finalEq", finalEq);
-    //         finalRes.push(finalEq);
-    //     }
-    //     return finalRes;
-    // }
+        if (typeof (inputkeys) != 'string') {
+            inputkeys.forEach((text) => {
+                let finalEq = this.getRegexMethodEq(regex, method, text, isCaseSenitive, isGlobal, isReplaceString);
+                finalRes.push(finalEq);
+            })
+        } else {
+            let finalEq = this.getRegexMethodEq(regex, method, inputkeys, isCaseSenitive, isGlobal, isReplaceString);
+            console.log("🚀 ~ file: index.js ~ line 215 ~ testRegexEquation ~ finalEq", finalEq);
+            finalRes.push(finalEq);
+        }
+        return finalRes;
+    }
 
     // inputData,
     // isCase,
     // isGlobal,
     // isWords
     // function regexEquation(keywords, isWordFormats = true, isDateFormats = false) {
-    regexEquation(inputData, isCase, isGlobal, isWords, testRegex = false) {
+    regexEquation(inputData, isCase, isGlobaly, isWords) {
         let isWordFormats = false;
         let isDateFormats = false;
         let isCaseSenitive = isCase ? 'i' : '';
-        let isGlobally = isGlobal ? 'g' : '';
+        let isGlobal = isGlobaly ? 'g' : '';
+        console.log("🚀 ~ file: pattern-generator.js ~ line 164 ~ PatternGenerator ~ regexEquation ~ isGlobal", isGlobal)
         let keywords = inputData;
         let multiplePatterns = [];
         let formedRegex = '';
         let inputkeys = '';
-        if (!testRegex) {
-            if (regexExp.words.test(isWords)) {
-                isWordFormats = true;
-            } else if (regexExp.dates.test(isWords)) {
-                isDateFormats = true;
-            } else if (regexExp.normal.test(isWords)) {
-                isWordFormats = false;
-                isDateFormats = false;
-            }
+
+        if (regexExp.words.test(isWords)) {
+            isWordFormats = true;
+        } else if (regexExp.dates.test(isWords)) {
+            isDateFormats = true;
+        } else if (regexExp.normal.test(isWords)) {
+            isWordFormats = false;
+            isDateFormats = false;
         }
 
         if (regexExp.isArray.test(keywords)) {
@@ -188,30 +179,16 @@ class PatternGenerator {
 
         if (typeof (inputkeys) != 'string') {
             inputkeys.forEach((keyword) => {
-                if (testRegex) {
-                    formedRegex = getRegexMethodEq(data.regexEq, data.method, text, isCaseSenitive, isGlobal, data.isReplace);
-                } else {
-                    formedRegex = keyGenerator(keyword, isWordFormats, isDateFormats);
-                }
+                formedRegex = this.keyGenerator(keyword, isWordFormats, isDateFormats);
                 multiplePatterns.push(formedRegex);
             });
-            if (testRegex) {
-                return multiplePatterns;
-            } else {
-                let expression = regexFormater(multiplePatterns, isCaseSenitive, isGlobally);
-                return expression;
-            }
+            let expression = this.regexFormater(multiplePatterns, isCaseSenitive, isGlobal);
+            return expression;
         } else {
             console.log('entered in one case');
-            if (testRegex) {
-                formedRegex = getRegexMethodEq(data.regexEq, data.method, inputkeys, isCaseSenitive, isGlobal, data.isReplace);
-                multiplePatterns.push(formedRegex);
-                return multiplePatterns;
-            } else {
-                formedRegex = keyGenerator(inputkeys, isWordFormats, isDateFormats);
-                const res = formedRegex ? [formedRegex] : undefined;
-                return regexFormater(res, isCaseSenitive, isGlobal);
-            }
+            formedRegex = this.keyGenerator(inputkeys, isWordFormats, isDateFormats);
+            const res = formedRegex ? [formedRegex] : undefined;
+            return this.regexFormater(res, isCaseSenitive, isGlobal);
         }
     }
 }

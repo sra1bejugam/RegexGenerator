@@ -1,17 +1,18 @@
 {
   "name": "@sra1bejugam/regex-nlp",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "This app will form regex patterns by giving strings or array of strings",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "author": "Shravan Bejugam",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
+    "np": "~7.3.0"
   },
+  "devDependencies": {},
   "directories": {
     "lib": "lib"
   }

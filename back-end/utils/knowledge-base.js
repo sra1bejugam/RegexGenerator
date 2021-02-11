@@ -10,7 +10,7 @@ module.exports = {
     specialChars: /[^a-z0-9]+/ig,
     digits: /^[0-9\/\s\-\.\,]+$/g,
     strictDigit: /[0-9]+/g,
-    flagsAtEnd: /((\/i?g?))$/,
+    flagsAtEnd: /((\/i?g?)|(\/g?i?))$/,
     onlyDigits: /^\d+$/g,
     strictAlphabets: /^[a-z]+$/ig,
     strictSpecialChars: /^[^a-z0-9]+$/ig,
