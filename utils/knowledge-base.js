@@ -1,6 +1,6 @@
-module.exports = {
+module.exports = { // remove g flag for normal case...
     monthsEq: '(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)',
-    months: /(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)/ig,
+    monthsRegex: /(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)/i,
     words: /words/i,
     dates: /dates/i,
     normal: /normal/i,
@@ -8,15 +8,15 @@ module.exports = {
     startValue: /^./,
     endValue: /.$/,
     specialChars: /[^a-z0-9]+/ig,
-    digits: /^[0-9\/\s\-\.\,]+$/g,
-    strictDigit: /[0-9]+/g,
+    digits: /^[0-9\/\s\-\.\,]+$/,
+    strictDigit: /[0-9]+/,
     flagsAtEnd: /((\/i?g?)|(\/g?i?))$/,
-    onlyDigits: /^\d+$/g,
+    onlyDigits: /^\d+$/,
     strictAlphabets: /^[a-z]+$/i,
-    strictSpecialChars: /^[^a-z0-9]+$/ig,
-    alphaNumeric: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/ig,
-    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9-.\/!@#$%^&*\(\).~`\s]+$/ig,
-    amounts: /^[0-9.,\-\+]+$/g,
-    alphaSpecialChars: /^[a-z-.\/!@#$%^&*\(\)\s.~`]+$/ig,
-    digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~`\s]+$/g
+    strictSpecialChars: /^[^a-z0-9]+$/i,
+    alphaNumeric: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/i,
+    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9-.\/!@#$%^&*\(\).~`\s]+$/i,
+    amounts: /^[0-9.,\-\+]+$/,
+    alphaSpecialChars: /^[a-z-.\/!@#$%^&*\(\)\s.~`]+$/i,
+    digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~`\s]+$/
 };
