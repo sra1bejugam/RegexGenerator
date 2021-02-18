@@ -91,6 +91,7 @@ class PatternGenerator {
     //   index: 0,
     //   input: 'abcd res',
     //   groups: undefined ]
+    
     getRegexMethodEq(regexEq, method, keyword, isCase, isGlobal, isReplace) {
         let eq = '';
         let stringRegex = regexEq.toString();
