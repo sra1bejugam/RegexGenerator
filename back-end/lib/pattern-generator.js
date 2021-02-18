@@ -96,12 +96,13 @@ class PatternGenerator {
         let stringRegex = regexEq.toString();
         let filteredRegex = stringRegex.replace(regexExp.startValue, '').replace(regexExp.flagsAtEnd, '');
         let equation = new RegExp(filteredRegex, `${isCase+isGlobal}`);
+        console.log("🚀 ~ file: pattern-generator.js ~ line 99 ~ PatternGenerator ~ getRegexMethodEq ~ equation", equation);
         switch (method) {
             case 'test':
                 eq = equation.test(keyword);
                 break;
             case 'exec':
-                eq = equation.exec(keyword) === null? 'null':equation.exec(keyword)[0]; // change this eq to identify index for exec
+                eq = equation.exec(keyword) === null ? 'null':equation.exec(keyword)[0]; // change this eq to identify index for exec
                 break;
             case 'match':
                 eq = keyword.match(equation)=== null ? 'null' : keyword.match(equation)[0]; // change this eq to identify index for match
