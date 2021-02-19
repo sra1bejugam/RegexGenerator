@@ -1,4 +1,4 @@
-module.exports = { // remove g flag for normal case...
+module.exports = { // removed g flag for normal case...
     monthsEq: '(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)',
     monthsRegex: /(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)/i,
     words: /words/i,
@@ -15,8 +15,8 @@ module.exports = { // remove g flag for normal case...
     strictAlphabets: /^[a-z]+$/i,
     strictSpecialChars: /^[^a-z0-9]+$/i,
     alphaNumeric: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/i,
-    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9-.\/!@#$%^&*\(\).~`\s]+$/i,
+    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9-.\/!@#$%^&*\(\).~\`\\s]+$/i,
     amounts: /^[0-9.,\-\+]+$/,
     alphaSpecialChars: /^[a-z-.\/!@#$%^&*\(\)\s.~`]+$/i,
-    digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~`\s]+$/
+    digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~\`\\s]+$/
 };
