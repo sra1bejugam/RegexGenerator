@@ -1,12 +1,12 @@
 ## regex-nlp
+
 Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters ** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
 
 Wohooo thats it !!!
 
 **Table of Contents**
 
-[TOC]
-
+[[_TOC_]]
 
 ## Install
 
@@ -16,17 +16,41 @@ You can install it by running
 
 `npm install --save @sra1bejugam/regex-nlp`
 
-**Using yarn **
+**Using yarn**
 
 `yarn add @sra1bejugam/regex-nlp`
 
 ## Usage
-```sh
-import regexGenerator from "@sra1bejugam/regex-nlp"
-regexGenerator.regexEquation(input, isCaseSensitive, isGlobal, areWords)```
+
+`import regexGenerator from "@sra1bejugam/regex-nlp"`
+`regexGenerator.regexEquation(input, pattern, isCaseSensitive, isGlobal)`
+
+>Note:  `isCaseSensitive` and `isGlobal` values are false by default
+
+## Example
+
+- If we need regex patterns related to **dates** then 
+
+`regexGenerator.regexEquation('12/12/2018','dates')`
+
+**Output** : /[0-9]{2}[^a-z0-9]+[0-9]{2}[^a-z0-9]+[0-9]{2,4}/.
+
+- If we need regex pattern related to **words** then 
+
+`regexGenerator.regexEquation('regex','words', true, true)`
+
+**Output** : /(regex)/ig.
+
+- If we need regex in **normal** pattern
+
+`regexGenerator.regexEquation('version 01','normal', true, true)`
+
+**Output** : /[a-z0-9\s]/ig.
+
+
 
 ## Documentation
-**regexEquation(input, isCaseSensitive, isGlobal, areWords)**
+**regexEquation(input, pattern, isCaseSensitive, isGlobal)**
 
 Takes an input and forms regex patterns
 
@@ -37,7 +61,7 @@ Takes an input and forms regex patterns
 
 - **Boolean** `isGlobal` :flag which is tagged to attern to handle global cases.
 
-- **String** `areWords `: string where it is used to denote that the pattern should be in words, dates or in normal form.
+- **String** `pattern `: string where it is used to denote that the pattern should be in words, dates or in normal form.
 
 **Return**
 - **RegExp** regular expression pattern
@@ -53,6 +77,3 @@ ISC &copy; @sra1bejugam
 **regex** **pattern** **regular**  **expressions**  **node** 
 
 ## End
-
-
-

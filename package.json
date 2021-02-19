@@ -1,10 +1,9 @@
 {
   "name": "@sra1bejugam/regex-nlp",
   "version": "1.0.18",
-  "description": "This app will form regex patterns by giving strings or array of strings and also we can test the regex patterns using different methods.",
+  "description": "This app will form regex patterns by giving strings/dates/digits/special characters and also we can test the regex patterns using different methods.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/js",
     "test": "echo \"Error: no test specified\""
   },
   "repository": {
@@ -14,11 +13,11 @@
   "homepage": "https://regex-generator.herokuapp.com/index",
   "author": "Shravan Bejugam",
   "license": "ISC",
+  "directories": {
+    "lib": "lib"
+  },
   "dependencies": {
     "np": "~7.3.0"
   },
-  "devDependencies": {},
-  "directories": {
-    "lib": "lib"
-  }
+  "devDependencies": {}
 }
