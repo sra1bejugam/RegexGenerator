@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/sra1bejugam/RegexGenerator"
   },
+  "bugs": {
+    "url": "https://github.com/sra1bejugam/RegexGenerator/issues"
+  },
   "keywords": [
     "regex",
     "patterns",
@@ -18,11 +21,16 @@
     "node"
   ],
   "homepage": "https://regex-generator.herokuapp.com/index",
-  "author": "Shravan Bejugam",
-  "license": "ISC",
+  "author": "Shravan Bejugam <bejugamShravan23@gmail.com>",
+  "license": "MIT",
   "directories": {
     "lib": "lib"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "lib/",
+    "index.js",
+    "utils/"
+  ]
 }

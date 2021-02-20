@@ -18,37 +18,63 @@ You can install it by running
 
 ## :gear: Usage
 ```js
-import regexGenerator from "@sra1bejugam/regex-nlp"
-regexGenerator.regexEquation(input, pattern, isCaseSensitive, isGlobal)
+import regexGenerator from "@sra1bejugam/regex-nlp";
+
+// if we need regular expression by giving strings/keywords then use this
+regexGenerator.getRegexExpression(input, pattern, isCaseSensitive, isGlobal);
+
+// If we need to test our regex with multiple strings/keywords then use this 
+regexGenerator.validateRegexEquation(keywords, regex, method, isReplaceString, isCase, isGlobaly);
+
 ```
 
  >Note:  `isCaseSensitive` and `isGlobal` values are false by default
 
 ## :key: Examples
 
-
+## Method 1 :
 - If we need regex patterns related to **dates** then 
 
-`regexGenerator.regexEquation('12/12/2018','dates')`
+`regexGenerator.getRegexExpression('12/12/2018','dates')`
 
-**Output** : /[0-9]{2}[^a-z0-9]+[0-9]{2}[^a-z0-9]+[0-9]{2,4}/.
+**Output** : /[0-9]{2}[^a-z0-9]+[0-9]{2}[^a-z0-9]+[0-9]{2,4}/
 
 - If we need regex pattern related to **words** then 
 
-`regexGenerator.regexEquation('regex','words', true, true)`
+`regexGenerator.getRegexExpression('regex','words', true, true)`
 
-**Output** : /(regex)/ig.
+**Output** : /(regex)/ig
 
 - If we need regex in **normal** pattern
 
-`regexGenerator.regexEquation('version 01','normal', true, true)`
+`regexGenerator.getRegexExpression('version 01','normal', true, true)`
 
-**Output** : /[a-z0-9\s]/ig.
+**Output** : /[a-z0-9\s]/ig
 
+##Method 2 :
 
+`regexGenerator.validateRegexEquation('some','/[a-z]/i', 'test', false, true, true)`
+
+**Output** : {keyword: 'some', result: true}
+
+`regexGenerator.validateRegexEquation('some','/(some)/i', 'exec')`
+
+**Output** : {keyword: 'some', result: 'some'}
+
+`regexGenerator.validateRegexEquation('some','/(some)/i', 'match')`
+
+**Output** : {keyword: 'some', result: 'some'}
+
+`regexGenerator.validateRegexEquation('some','/(some)/ig', 'replace','1234',true,true)`
+
+**Output** : {keyword: 'some', result: 1234}
+
+`regexGenerator.validateRegexEquation('this find find index of @','/@/', 'search')`
+
+**Output** : {keyword: 'this find find index of @', result: 24}
 
 ## :memo: Documentation
-**regexEquation(input, pattern, isCaseSensitive, isGlobal)**
+**getRegexExpression(input, pattern, isCaseSensitive, isGlobal)**
 
 Takes an input and forms regex patterns
 
@@ -65,17 +91,44 @@ Takes an input and forms regex patterns
 - **RegExp** regular expression pattern
 
 
+
+**validateRegexEquation(keywords, regex, method, isReplaceString, isCase, isGlobaly)**
+
+Takes keyswords and regex as input and tests all the keywords and give back results
+
+**Params**
+- **Any** `keywords` : Takes any number of words , numbers  or special characters.
+
+- **RegexExp** `regex` : Takes regular expression.
+
+- **String** `method`: As of now validating only 5 methods like (test, match, exec, replace, search)
+
+- **String** `isReplaceString`: this variable is used when we choose replace method, giving the keyword to this variable will replace the string.
+
+-  **Boolean** `isCaseSensitive` : Flag which is tagged to regex pattern to handle case Sensitive cases.
+
+- **Boolean** `isGlobal` :flag which is tagged to attern to handle global cases.
+
+**Return**
+- **Array of objects** with keyword and result
+
+
+
+
+
+
+
 :heart: Wohooo thats it !!!
 
 
 ## :raising_hand_man: Maintainer
-@sra1bejugam
-
+[sra1bejugam][website]
 ## :scroll: License
 
-[ISC][license] © [sra1bejugam][website]
+[MIT][license] © [sra1bejugam][website]
 
 
 [license]: /LICENSE
 [website]: https://github.com/sra1bejugam/RegexGenerator
 [gpay-donations]: htps://addcrctsitehere.com
+
