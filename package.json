@@ -10,14 +10,19 @@
     "type": "git",
     "url": "https://github.com/sra1bejugam/RegexGenerator"
   },
+  "keywords": [
+    "regex",
+    "patterns",
+    "regular",
+    "expressions",
+    "node"
+  ],
   "homepage": "https://regex-generator.herokuapp.com/index",
   "author": "Shravan Bejugam",
   "license": "ISC",
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {
-    "np": "~7.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

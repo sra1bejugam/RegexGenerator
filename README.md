@@ -1,33 +1,31 @@
 ## regex-nlp
+ [![Version](https://img.shields.io/npm/v/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp) [![Downloads](https://img.shields.io/npm/dt/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp)
 
-Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters ** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
+:point_right: regex-nlp Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters ** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
 
-Wohooo thats it !!!
 
-**Table of Contents**
-
-[[_TOC_]]
-
-## Install
+## :electric_plug: Installation
 
 You can install it by running 
 
 **Using npm**
 
-`npm install --save @sra1bejugam/regex-nlp`
+:arrow_right: `npm install --save @sra1bejugam/regex-nlp`
 
 **Using yarn**
 
-`yarn add @sra1bejugam/regex-nlp`
+:arrow_right: `yarn add @sra1bejugam/regex-nlp`
 
-## Usage
+## :gear: Usage
+```js
+import regexGenerator from "@sra1bejugam/regex-nlp"
+regexGenerator.regexEquation(input, pattern, isCaseSensitive, isGlobal)
+```
 
-`import regexGenerator from "@sra1bejugam/regex-nlp"`
-`regexGenerator.regexEquation(input, pattern, isCaseSensitive, isGlobal)`
+ >Note:  `isCaseSensitive` and `isGlobal` values are false by default
 
->Note:  `isCaseSensitive` and `isGlobal` values are false by default
+## :key: Examples
 
-## Example
 
 - If we need regex patterns related to **dates** then 
 
@@ -49,7 +47,7 @@ You can install it by running
 
 
 
-## Documentation
+## :memo: Documentation
 **regexEquation(input, pattern, isCaseSensitive, isGlobal)**
 
 Takes an input and forms regex patterns
@@ -66,14 +64,18 @@ Takes an input and forms regex patterns
 **Return**
 - **RegExp** regular expression pattern
 
-## Maintainer
+
+:heart: Wohooo thats it !!!
+
+
+## :raising_hand_man: Maintainer
 @sra1bejugam
 
-## License
+## :scroll: License
 
-ISC &copy; @sra1bejugam
+[ISC][license] © [sra1bejugam][website]
 
-## Keywords
-**regex** **pattern** **regular**  **expressions**  **node** 
 
-## End
+[license]: /LICENSE
+[website]: https://github.com/sra1bejugam/RegexGenerator
+[gpay-donations]: htps://addcrctsitehere.com
