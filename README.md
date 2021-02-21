@@ -1,7 +1,7 @@
 ## regex-nlp
  [![Version](https://img.shields.io/npm/v/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp) [![Downloads](https://img.shields.io/npm/dt/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp)
 
-:point_right: regex-nlp Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters ** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
+:point_right: regex-nlp Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
 
 
 ## :electric_plug: Installation
@@ -21,67 +21,72 @@ You can install it by running
 import regexGenerator from "@sra1bejugam/regex-nlp";
 
 // if we need regular expression by giving strings/keywords then use this
-regexGenerator.getRegexExpression(input, pattern, isCaseSensitive, isGlobal);
+regexGenerator.getRegexExpression(input, pattern, isCaseInSensitive, isGlobal);
 
 // If we need to test our regex with multiple strings/keywords then use this 
 regexGenerator.validateRegexEquation(keywords, regex, method, isReplaceString, isCase, isGlobaly);
 
 ```
 
- >Note:  `isCaseSensitive` and `isGlobal` values are false by default
+ >Note:  `isCaseInSensitive` and `isGlobal` values are false by default
 
 ## :key: Examples
+```js
+########################### Method 1 ##################################
 
-## Method 1 :
-- If we need regex patterns related to **dates** then 
+let regexGenerator = require('../lib/pattern-generator');
+let regexPattern;
 
-`regexGenerator.getRegexExpression('12/12/2018','dates')`
+// Note: isCaseInSensitive and isGlobal values are false by default
 
-**Output** : /[0-9]{2}[^a-z0-9]+[0-9]{2}[^a-z0-9]+[0-9]{2,4}/
+// If we need regex patterns related to **dates** then 
+regexPattern = regexGenerator.getRegexExpression('12/12/2018', 'dates');
+console.log(regexPattern); // output--> /[0-9]{2}[^a-z0-9]+[0-9]{2}[^a-z0-9]+[0-9]{2,4}/
 
-- If we need regex pattern related to **words** then 
+// If we need regex pattern related to **words** then 
+regexPattern = regexGenerator.getRegexExpression('regex', 'words', true, true);
+console.log(regexPattern); // output--> /(regex)/ig
 
-`regexGenerator.getRegexExpression('regex','words', true, true)`
+// If we need regex in **normal** pattern
+regexPattern = regexGenerator.getRegexExpression('version 01', 'normal', true, true)
+console.log(regexPattern); // output--> /[a-z0-9\s]/ig.
+```
+```js
+############################# Method 2 ####################################
 
-**Output** : /(regex)/ig
+let regexGenerator = require('../lib/pattern-generator');
+let res;
 
-- If we need regex in **normal** pattern
+// Note: isCaseInSensitive and isGlobal values are false by default
 
-`regexGenerator.getRegexExpression('version 01','normal', true, true)`
+res = regexGenerator.validateRegexEquation('some', '/[a-z]/i', 'test', false, true, true);
+console.log(res); // output--> {keyword: 'some', result: true}
 
-**Output** : /[a-z0-9\s]/ig
+res = regexGenerator.validateRegexEquation('some', '/(some)/i', 'exec');
+console.log(res); // output-->  {keyword: 'some', result: 'some'}
 
-##Method 2 :
+res = regexGenerator.validateRegexEquation('some', '/(some)/i', 'match');
+console.log(res); // output-->  {keyword: 'some', result: 'some'}
 
-`regexGenerator.validateRegexEquation('some','/[a-z]/i', 'test', false, true, true)`
+res = regexGenerator.validateRegexEquation('some', '/(some)/ig', 'replace', '1234', true, true);
+console.log(res); // output-->  {keyword: 'some', result: 1234}
 
-**Output** : {keyword: 'some', result: true}
+res = regexGenerator.validateRegexEquation('this find find index of @', '/@/', 'search');
+console.log(res); // output-->  {keyword: 'this find find index of @', result: 24}
 
-`regexGenerator.validateRegexEquation('some','/(some)/i', 'exec')`
-
-**Output** : {keyword: 'some', result: 'some'}
-
-`regexGenerator.validateRegexEquation('some','/(some)/i', 'match')`
-
-**Output** : {keyword: 'some', result: 'some'}
-
-`regexGenerator.validateRegexEquation('some','/(some)/ig', 'replace','1234',true,true)`
-
-**Output** : {keyword: 'some', result: 1234}
-
-`regexGenerator.validateRegexEquation('this find find index of @','/@/', 'search')`
-
-**Output** : {keyword: 'this find find index of @', result: 24}
-
+```
 ## :memo: Documentation
-**getRegexExpression(input, pattern, isCaseSensitive, isGlobal)**
+
+## Method 1:
+
+# getRegexExpression(input, pattern, isCaseInSensitive, isGlobal)
 
 Takes an input and forms regex patterns
 
 **Params**
-- **Any** `input` : Takes any number of words , numbers  or special characters.
+- **Any** `input` : Takes any number of words , numbers  or special characters or collection of keywords.
 
--  **Boolean** `isCaseSensitive` : Flag which is tagged to regex pattern to handle case Sensitive cases.
+-  **Boolean** `isCaseInSensitive` : Flag which is tagged to regex pattern to handle case Sensitive cases.
 
 - **Boolean** `isGlobal` :flag which is tagged to attern to handle global cases.
 
@@ -91,8 +96,9 @@ Takes an input and forms regex patterns
 - **RegExp** regular expression pattern
 
 
+## Method 2:
 
-**validateRegexEquation(keywords, regex, method, isReplaceString, isCase, isGlobaly)**
+# validateRegexEquation(keywords, regex, method, isReplaceString, isCase, isGlobaly)
 
 Takes keyswords and regex as input and tests all the keywords and give back results
 
@@ -105,7 +111,7 @@ Takes keyswords and regex as input and tests all the keywords and give back resu
 
 - **String** `isReplaceString`: this variable is used when we choose replace method, giving the keyword to this variable will replace the string.
 
--  **Boolean** `isCaseSensitive` : Flag which is tagged to regex pattern to handle case Sensitive cases.
+-  **Boolean** `isCaseInSensitive` : Flag which is tagged to regex pattern to handle case Sensitive cases.
 
 - **Boolean** `isGlobal` :flag which is tagged to attern to handle global cases.
 
@@ -114,7 +120,9 @@ Takes keyswords and regex as input and tests all the keywords and give back resu
 
 
 
+# Need UI Interface for this package
 
+[regexGenerator.com][UISite]
 
 
 
@@ -130,5 +138,6 @@ Takes keyswords and regex as input and tests all the keywords and give back resu
 
 [license]: /LICENSE
 [website]: https://github.com/sra1bejugam/RegexGenerator
+[UISite]:https://regex-generator.herokuapp.com/index
 [gpay-donations]: htps://addcrctsitehere.com
 

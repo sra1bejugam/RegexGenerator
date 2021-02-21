@@ -1,7 +1,7 @@
 let regexGenerator = require('../lib/pattern-generator');
 
 let regexPattern;
-// Note: isCaseSensitive and isGlobal values are false by default
+// Note: isCaseInSensitive and isGlobal values are false by default
 
 // If we need regex patterns related to **dates** then 
 regexPattern = regexGenerator.getRegexExpression('12/12/2018', 'dates');
@@ -12,7 +12,7 @@ regexPattern = regexGenerator.getRegexExpression('regex', 'words', true, true);
 console.log(regexPattern); // output--> /(regex)/ig
 
 // If we need regex in **normal** pattern
-regexPattern = regexGenerator.getRegexExpression('version 01', 'normal', true, true)
+regexPattern = regexGenerator.getRegexExpression('version 01', 'normal', true, true);
 console.log(regexPattern); // output--> /[a-z0-9\s]/ig.
 
 

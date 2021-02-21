@@ -1,7 +1,7 @@
 let regexGenerator = require('../lib/pattern-generator');
 
 let res;
-// Note: isCaseSensitive and isGlobal values are false by default
+// Note: isCaseInSensitive and isGlobal values are false by default
 
 res = regexGenerator.validateRegexEquation('some', '/[a-z]/i', 'test', false, true, true);
 console.log(res); // output--> {keyword: 'some', result: true}
