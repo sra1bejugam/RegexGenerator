@@ -1,5 +1,5 @@
 ## regex-nlp
- [![Version](https://img.shields.io/npm/v/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp) [![Downloads](https://img.shields.io/npm/dt/@sra1bejugam/regex-nlp.svg)](https://www.npmjs.com/package/@sra1bejugam/regex-nlp)
+ [![Version](https://img.shields.io/npm/v/regex-nlp.svg)](https://www.npmjs.com/package/regex-nlp) [![Downloads](https://img.shields.io/npm/dt/regex-nlp.svg)](https://www.npmjs.com/package/regex-nlp)
 
 :point_right: regex-nlp Is an npm package where we can get the regex patterns by simply passing the **text/number/any special characters** or **multiple texts/numbers/any special characters** with some flags like **case sensitive**, **global**, and also in which format you need pattern(either in **words**, **dates** or in **normal form**).
 
@@ -10,15 +10,15 @@ You can install it by running
 
 **Using npm**
 
-:arrow_right: `npm install --save @sra1bejugam/regex-nlp`
+:arrow_right: `npm install --save regex-nlp`
 
 **Using yarn**
 
-:arrow_right: `yarn add @sra1bejugam/regex-nlp`
+:arrow_right: `yarn add regex-nlp`
 
 ## :gear: Usage
 ```js
-import regexGenerator from "@sra1bejugam/regex-nlp";
+import regexGenerator from "regex-nlp";
 
 // if we need regular expression by giving strings/keywords then use this
 regexGenerator.getRegexExpression(input, pattern, isCaseInSensitive, isGlobal);
