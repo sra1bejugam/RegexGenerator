@@ -10,7 +10,7 @@ module.exports = { // removed g flag for normal case...
     endValue: /.$/,
     specialChars: /[^a-z0-9]+/ig,
     digits: /^[0-9\/\s\-\.\,]+$/,
-    strictDigit: /[0-9]+/,
+    strictDigit: /[0-9]+/g,
     flagsAtEnd: /((\/i?g?)|(\/g?i?))$/,
     onlyDigits: /^\d+$/,
     strictAlphabets: /^[a-z]+$/i,
