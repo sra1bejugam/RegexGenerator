@@ -1,6 +1,6 @@
 {
   "name": "regex-nlp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This app will form regex patterns by giving strings/dates/digits/special characters and also we can test the regex patterns using different methods.",
   "main": "index.js",
   "scripts": {
