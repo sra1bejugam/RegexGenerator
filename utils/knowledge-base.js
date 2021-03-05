@@ -16,7 +16,7 @@ module.exports = { // removed g flag for normal case...
     strictAlphabets: /^[a-z]+$/i,
     strictSpecialChars: /^[^a-z0-9]+$/i,
     alphaNumeric: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/i,
-    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9\W]+$/i,
+    alphaNumericWithSpecialChars: /^(?=.*[a-z])(?=.*[0-9])[a-z0-9\\W]+$/i,
     amounts: /^[0-9.,\-\+]+$/,
     alphaSpecialChars: /^[a-z-.\/!@#$%^&*\(\)\s.~`]+$/i,
     digitsSpecialChars: /^[0-9-.\/!@#$%^&*\(\).~\`\\s]+$/

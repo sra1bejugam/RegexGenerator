@@ -32,7 +32,7 @@ regexGenerator.validateRegexEquation(keywords, regex, method, isReplaceString, i
 
 ## :key: Examples
 ```js
-########################### Method 1 ##################################
+--Method 1: get regex expression--
 
 let regexGenerator = require('../lib/pattern-generator');
 let regexPattern;
@@ -52,7 +52,7 @@ regexPattern = regexGenerator.getRegexExpression('version 01', 'normal', true, t
 console.log(regexPattern); // output--> /[a-z0-9\s]/ig.
 ```
 ```js
-############################# Method 2 ####################################
+--Method 2: validate keywords using regex expression--
 
 let regexGenerator = require('../lib/pattern-generator');
 let res;
@@ -120,7 +120,9 @@ Takes keyswords and regex as input and tests all the keywords and give back resu
 
 
 
-# Need UI Interface for this package
+# Need UI Interface for this package ?
+
+Click on below link to experience the application
 
 [regexGenerator.com][UISite]
 
